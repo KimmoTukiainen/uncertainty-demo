@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductList shows a list of products 1`] = `
+<div
+  data-testid="success"
+>
+  <p>
+    <span>
+      some name
+    </span>
+    <span>
+      10.5
+      €
+    </span>
+  </p>
+</div>
+`;
+
+exports[`ProductList shows a loader 1`] = `
+<p
+  data-testid="loading"
+>
+  loading
+</p>
+`;
+
+exports[`ProductList shows an error 1`] = `
+<p
+  data-testid="error"
+>
+  some error
+</p>
+`;

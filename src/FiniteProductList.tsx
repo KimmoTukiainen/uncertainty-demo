@@ -6,9 +6,9 @@ import useFiniteProducts, {
 } from './useFiniteProducts';
 
 const ProductList: React.FC<{ products: FiniteProduct[] }> = ({ products }) => (
-  <>
+  <div data-testid="success">
     {products.map((product) => (
-      <p>
+      <p key={product.name}>
         <span>{product.name}</span>
 
         <span>
@@ -17,15 +17,15 @@ const ProductList: React.FC<{ products: FiniteProduct[] }> = ({ products }) => (
         </span>
       </p>
     ))}
-  </>
+  </div>
 );
 
 const renderResult = (result: FiniteApiResult) => {
   switch (result.name) {
     case 'failure':
-      return <p>{result.error.message}</p>;
+      return <p data-testid="error">{result.error.message}</p>;
     case 'loading':
-      return <p>loading</p>;
+      return <p data-testid="loading">loading</p>;
     default:
       return <ProductList products={result.products} />;
   }

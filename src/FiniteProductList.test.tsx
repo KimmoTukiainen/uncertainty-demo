@@ -1,37 +1,37 @@
 import { RenderResult, render } from '@testing-library/react';
 import React from 'react';
 
-import ProductList from './ProductList';
-import useProducts from './useProducts';
+import FiniteProducList from './FiniteProductList';
+import useFiniteProducts from './useFiniteProducts';
 
-jest.mock('./useProducts');
+jest.mock('./useFiniteProducts');
 
 describe('ProductList', () => {
   let result: RenderResult;
-  let useProductsMock = useProducts as jest.Mock;
+  let useProductsMock = useFiniteProducts as jest.Mock;
 
   it('shows a loader', () => {
     useProductsMock.mockImplementationOnce(() => ({
-      loading: true,
+      name: 'loading',
     }));
-    result = render(<ProductList />);
+    result = render(<FiniteProducList />);
 
     expect(result.getByTestId('loading')).toMatchSnapshot();
   });
 
   it('shows an error', () => {
     useProductsMock.mockImplementationOnce(() => ({
-      loading: false,
-      error: new Error('some-error'),
+      name: 'failure',
+      error: new Error('some error'),
     }));
-    result = render(<ProductList />);
+    result = render(<FiniteProducList />);
 
     expect(result.getByTestId('error')).toMatchSnapshot();
   });
 
   it('shows a list of products', () => {
     useProductsMock.mockImplementationOnce(() => ({
-      loading: false,
+      name: 'success',
       products: [
         {
           name: 'some name',
@@ -42,7 +42,7 @@ describe('ProductList', () => {
         },
       ],
     }));
-    result = render(<ProductList />);
+    result = render(<FiniteProducList />);
 
     expect(result.getByTestId('success')).toMatchSnapshot();
   });

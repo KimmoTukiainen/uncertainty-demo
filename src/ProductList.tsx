@@ -20,17 +20,17 @@ const ProductList: React.FC = () => {
   const productsState = useProducts();
 
   if (productsState.loading) {
-    return <p>loading</p>;
+    return <p data-testid="loading">loading</p>;
   }
 
   if (productsState.error) {
-    return <p>{productsState.error.message}</p>;
+    return <p data-testid="error">{productsState.error.message}</p>;
   }
 
   return productsState.products ? (
-    <div>
+    <div data-testid="success">
       {productsState.products.map((product: Product) => (
-        <ProductItem product={product} />
+        <ProductItem key={product.name} product={product} />
       ))}
     </div>
   ) : null;
