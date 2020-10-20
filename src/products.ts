@@ -20,4 +20,7 @@ export default [
       unit: '€',
     },
   },
+  {
+    name: 'product D',
+  },
 ];

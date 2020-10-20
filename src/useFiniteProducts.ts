@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import useFakeApiCall from './useFakeApiCall';
+import productData from './products';
 
-import products from './products';
-import { Product, ProductApiResult } from './useProducts';
+import { Product } from './useProducts';
 
 const normalizeProduct = (product: Product): FiniteProduct => ({
   ...product,
@@ -39,34 +39,23 @@ type Loading = {
 export type FiniteApiResult = Success | Failure | Loading;
 
 export default (): FiniteApiResult => {
-  const [result, setResult] = useState<ProductApiResult>({
-    loading: false,
-  });
+  const { loading, result: products, error } = useFakeApiCall(productData);
 
-  useEffect(() => {
-    setResult({ ...result, loading: true });
-    const timer = setTimeout(() => {
-      setResult({ ...result, products, loading: false });
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (result.loading) {
+  if (loading) {
     return {
       name: 'loading',
     };
   }
 
-  if (result.products) {
+  if (products) {
     return {
       name: 'success',
-      products: result.products.map(normalizeProduct) || [],
+      products: products.map(normalizeProduct),
     };
   }
 
   return {
     name: 'failure',
-    error: result.error || new Error('some error'),
+    error: error || new Error('No data received'),
   };
 };

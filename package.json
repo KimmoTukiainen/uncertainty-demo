@@ -19,7 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:coverage": "npm run test -- --coverage",
+    "test:coverage": "npm run test -- --coverage  --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -36,5 +36,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.4.1",
+    "react-test-renderer": "^16.13.1"
   }
 }

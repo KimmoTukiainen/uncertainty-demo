@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import useFakeApiCall from './useFakeApiCall';
 
-import products from './products';
+import productData from './products';
 
 export type Price = {
   amount: number | null;
@@ -19,18 +19,11 @@ export type ProductApiResult = {
 };
 
 export default (): ProductApiResult => {
-  const [result, setResult] = useState<ProductApiResult>({
-    loading: false,
-  });
+  const { loading, error, result: products } = useFakeApiCall(productData);
 
-  useEffect(() => {
-    setResult({ ...result, loading: true });
-    const timer = setTimeout(() => {
-      setResult({ ...result, products, loading: false });
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  return result;
+  return {
+    loading,
+    error,
+    products,
+  };
 };
