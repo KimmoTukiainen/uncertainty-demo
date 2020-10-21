@@ -9,12 +9,8 @@
 
 ## Analysis
 
+There's only three valid states for a product list
+
 |                           | ProductList | FiniteProductList |
 | ------------------------- | ----------- | ----------------- |
 | amount of possible states | 20          | 3                 |
-| amount of valid states    | 3           | 3                 |
-| amount of invalid states  | 17          | 0                 |
-
-|     | useProducts | useFiniteProducts |
-| --- | ----------- | ----------------- |
-|     |             |                   |
