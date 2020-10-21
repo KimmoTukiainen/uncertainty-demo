@@ -1,4 +1,4 @@
-# Demo of uncertainty in code
+# Demo of uncertainty and complexity in code
 
 - optional arguments
 - optional properties
