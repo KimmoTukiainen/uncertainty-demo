@@ -25,3 +25,11 @@ There's only three valid states for a product list
 |                           | ProductList | FiniteProductList |
 | ------------------------- | ----------- | ----------------- |
 | amount of possible states | 20          | 3                 |
+
+## Complexity's impact on test coverage
+
+1. `npm run test:coverage`
+2. Compare FiniteProductList and ProductList
+
+You should notice that optional values create need for extra tests, or to put it the other way around:
+**Removing optional values reduces the need for tests**.
